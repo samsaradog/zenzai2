@@ -11,3 +11,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+def encrypted_password(password = 'password123')
+  User.new.send(:password_digest, password)
+end

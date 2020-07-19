@@ -1,0 +1,5 @@
+valid:
+  email: abc@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
+  gets_daily_dharma: false
