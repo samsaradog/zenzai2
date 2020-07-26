@@ -1,13 +1,12 @@
 require 'test_helper'
+require 'test_helpers/presence_test'
 
 class DeliveryTest < ActiveSupport::TestCase
+  include PresenceTest
+
   %i[date jewel_id].each do |field|
     test "invalid without #{field.to_s}" do
-      delivery = Delivery.new
-      delivery.send("#{field}=", nil)
-      delivery.valid?
-
-      assert_not_empty(delivery.errors[field])
+      assert_presence(Delivery, field)
     end
   end
 

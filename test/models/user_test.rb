@@ -1,6 +1,9 @@
 require 'test_helper'
+require 'test_helpers/presence_test'
 
 class UserTest < ActiveSupport::TestCase
+  include PresenceTest
+
   setup do
     @valid = users(:valid)
   end
@@ -48,11 +51,7 @@ class UserTest < ActiveSupport::TestCase
 
   %i[email password].each do |field|
     test "invalid without #{field.to_s}" do
-      user = User.new
-      user.send("#{field}=", nil)
-
-      assert_not(user.valid?)
-      assert_not_empty(user.errors[field])
+      assert_presence(User, field)
     end
   end
 

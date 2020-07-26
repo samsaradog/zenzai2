@@ -1,6 +1,9 @@
 require 'test_helper'
+require 'test_helpers/presence_test'
 
 class JewelTest < ActiveSupport::TestCase
+  include PresenceTest
+
   setup do
     @valid = jewels(:valid)
   end
@@ -11,10 +14,7 @@ class JewelTest < ActiveSupport::TestCase
 
   %i[source citation quote comment].each do |field|
     test "invalid without #{field.to_s}" do
-      @valid.send("#{field}=", nil)
-
-      assert_not(@valid.valid?)
-      assert_not_empty(@valid.errors[field])
+      assert_presence(Jewel, field)
     end
   end
 end
