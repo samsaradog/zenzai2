@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="page-header">
+    <h1 align="center">Welcome to the TripleWorld</h1>
+  </div>
+
+  <div class="jumbotron">
+    <p><i><%= @jewel_presenter.html_quote %></i></p>
+  </div>
+
+  <div class="jumbotron">
+    <p><%= @jewel_presenter.comment %></p>
+  </div>
+
+  <hr/>
+  <div class="panel">
+    <p><a href=<%= "#{new_user_registration_path}" %>>Sign Up</a> to receive daily emails with quotes from the Lotus Sutra and Nichiren Shonin.</p>
+    <p>You will receive a confirmation email to make sure we know how to find you. Just follow the instructions in that note.</p>
+    <p>If have any questions, please email the site <a href="mailto:admin@zenzaizenzai.com"> administrator</a>.</p>
+    <p>To unsubscribe from emails or cancel your account, edit your <a href=<%= "#{edit_user_registration_path}" %>>Profile</a> page.</p>
+  </div>
+
+</div>

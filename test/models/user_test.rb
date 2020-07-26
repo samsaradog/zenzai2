@@ -5,8 +5,8 @@ class UserTest < ActiveSupport::TestCase
     @valid = users(:valid)
   end
 
-  test 'valid user' do
-    assert_equal(User.count, 1)
+  test 'valid users' do
+    assert_not_equal(User.count, 0)
   end
 
   test 'password too short' do

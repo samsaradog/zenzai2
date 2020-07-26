@@ -3,3 +3,11 @@ valid:
   encrypted_password: <%= encrypted_password %>
   is_admin: false
   gets_daily_dharma: false
+  confirmed_at: <%= Time.now %>
+
+admin:
+  email: admin@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: true
+  gets_daily_dharma: false
+  confirmed_at: <%= Time.now %>
