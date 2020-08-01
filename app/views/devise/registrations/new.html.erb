@@ -1,29 +1,24 @@
-<h2>Sign up</h2>
+<div class="container-fluid">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render :partial => "devise/shared/header", :locals => {:message => "Sign up"} %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="jumbotron">
+    <p>Thanks for signing up to this website. You will receive an email asking you to confirm your email address.
+       After you have clicked the link in the email and given us your confirmation, you will start getting daily
+       emails with quotes from Nichiren Shonin. If you ever want to take a break from receiving emails, please change
+       option in your profile. Welcome!
+    </p>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <%= render :partial => "devise/shared/email_password", :locals => {:f => f} %>
+    <%= render :partial => "devise/shared/password_confirmation", :locals => {:f => f} %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Sign up"} %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>
+

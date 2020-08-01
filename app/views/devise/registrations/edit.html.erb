@@ -1,43 +1,67 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container-fluid">
+  <%= render :partial => "devise/shared/header", :locals => {:message => "Edit User Profile"} %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= devise_error_messages! %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <div class="columns">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <%= f.check_box :gets_daily_dharma %> <%= f.label :gets_daily_dharma, "Sign up for Daily Dharma?" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <%= f.label :password, "password" %>
+          <%= f.label :password, "(leave blank if you don't want to change it)" %>
+          <%= f.password_field :password, :autocomplete => "off" %>
+        </div>
+      </div>
+
+      <%= render :partial => "devise/shared/password_confirmation", :locals => {:f => f} %>
+
+      <div class="form-group">
+        <div class="col-xs-12">
+          <%= f.label :current_password, "current password" %>
+          <%= f.label :current_password, "(we need your current password to confirm your changes)" %>
+          <%= f.password_field :current_password %>
+        </div>
+      </div>
+
+      <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Update"} %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <hr />
+
+  <div class="form-group">
+    <div class="col-xs-12">
+      <h3>Cancel my account</h3>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <div class="col-xs-12">
+      <p>Are you sure you want to leave us?</p>
+      <%= button_to "Cancel my account", registration_path(resource_name), :class => "btn btn-danger", 
+        :data => { :confirm => "Are you sure?" }, :method => :delete %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  <hr />
+
+  <div class="form-group">
+    <div class="col-xs-12">
+      <%= link_to "Back", :back %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

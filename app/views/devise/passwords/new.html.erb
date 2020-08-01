@@ -1,16 +1,14 @@
-<h2>Forgot your password?</h2>
+<div class="container-fluid">
+  <%= render :partial => "devise/shared/header", :locals => {:message => "Forgot your password?"} %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Send me reset password instructions"} %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>
+

@@ -1,16 +1,21 @@
-<h2>Resend confirmation instructions</h2>
+<div class="container-fluid">
+  <%= render :partial => "devise/shared/header", :locals => {:message => "Resend confirmation instructions"} %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  <div class="jumbotron">
+    <p>
+       If you missed getting an email with confirmation instructions, please provide it here and we will send
+       it to you again.
+    </p>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+  <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= render "devise/shared/links" %>
+    <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
+    <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Resend confirmation instructions"} %>
+
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+
