@@ -1,6 +1,5 @@
 require 'presenters/jewel_presenter'
-require 'datatables/jewels_datatable'
-require 'will_paginate'
+require './app/datatables/jewels_datatable'
 
 require 'admin_controller'
 
@@ -8,7 +7,7 @@ class JewelsController < AdminController
   def index
     respond_to do |format|
       format.html
-      format.json { render :json => Zenzai::JewelsDatatable.new(params, view_context: view_context) }
+      format.json { render :json => JewelsDatatable.new(params, view_context: view_context) }
     end
   end
 
@@ -18,7 +17,7 @@ class JewelsController < AdminController
 
   def update
     @jewel = Jewel.find(params[:id])
-    if @jewel.update_attributes(jewel_params)
+    if @jewel.update(jewel_params)
       flash[:notice] = "Successful Update"
       redirect_to jewels_path
     else

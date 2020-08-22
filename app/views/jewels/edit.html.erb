@@ -1,0 +1,28 @@
+<h3>Edit Jewel</h3>
+<%= form_for(@jewel, html: {class: "container-fluid"}) do |f| %>
+  <div class="form-group">
+    <%= f.label :source, "source" %>
+    <%= f.text_field :source, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :citation, "citation" %>
+    <%= f.text_field :citation, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :quote, "quote" %>
+    <%= f.text_area :quote, class: "form-control", rows: 8 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comment, "comment" %>
+    <%= f.text_area :comment, class: "form-control input-lg", rows: 8 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Save", :id => "commit", :class => "btn btn-primary" %>
+    <%= link_to "Cancel", jewels_path, :id => "cancel", :class => "btn btn-danger" %>
+  </div>
+
+<% end %>

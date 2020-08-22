@@ -17,7 +17,7 @@ module Zenzai
     end
 
     def html_quote
-      @jewel.quote.gsub("\u2028", "<br>").html_safe
+      @jewel.quote.gsub("\u2028", "<br>")
     end
 
     private
