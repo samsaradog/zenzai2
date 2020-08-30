@@ -2,12 +2,19 @@ valid:
   email: abc@123.com
   encrypted_password: <%= encrypted_password %>
   is_admin: false
-  gets_daily_dharma: false
+  gets_daily_dharma: true
   confirmed_at: <%= Time.now %>
 
 admin:
   email: admin@123.com
   encrypted_password: <%= encrypted_password %>
   is_admin: true
+  gets_daily_dharma: true
+  confirmed_at: <%= Time.now %>
+
+no_daily_dharma:
+  email: no_daily_dharma@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
   gets_daily_dharma: false
   confirmed_at: <%= Time.now %>

@@ -1,0 +1,11 @@
+for_yesterday:
+  date: <%= Date.today - 1.day %>
+  jewel: valid
+
+for_today:
+  date: <%= Date.today %>
+  jewel: number_2
+
+for_tomorrow:
+  date: <%= Date.today + 1.day %>
+  jewel: number_3

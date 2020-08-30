@@ -3,3 +3,15 @@ valid:
   citation: blah
   quote: blah
   comment: blah
+
+number_2:
+  source: blah_2
+  citation: blah_2
+  quote: blah_2
+  comment: blah_2
+
+number_3:
+  source: blah_3
+  citation: blah_3
+  quote: blah_3
+  comment: blah_3
