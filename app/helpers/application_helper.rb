@@ -1,7 +1,6 @@
 module ApplicationHelper
   def header_tabs
     raw("#{tabs_header}#{user_profile}#{sign_in_sign_up}#{admin_tabs}#{sign_out}#{tabs_footer}")
-    #sanitize("#{tabs_header}#{user_profile}#{sign_in_sign_up}#{admin_tabs}#{sign_out}#{tabs_footer}", attributes: %w[data-method href class])
   end
 
   def tabs_header
@@ -11,10 +10,10 @@ module ApplicationHelper
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="/pages/about" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  About
                </a>
-               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <div class="dropdown-menu" aria-labelledby="aboutDropdown">
                  <a class="dropdown-item" href="/pages/about">Welcome</a>
                  <a class="dropdown-item" href="/pages/zenzai">Zenzai</a>
                  <a class="dropdown-item" href="/pages/support">Support</a>
