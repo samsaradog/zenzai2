@@ -1,24 +1,6 @@
-# README
+== Welcome to the Triple World
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This site is meant to support activities of the Lexington Nichiren Buddhist Community by automailing the Daily Dharma email.
+It is built with Bootstrap and Datatables. Gracious thanks to Sophia Bell and her [post](https://blog.makersacademy.com/how-to-install-bootstrap-and-jquery-on-rails-6-da6e810c1b87) on getting these to work in Rails 6.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For more information, please contact samsaradog.
