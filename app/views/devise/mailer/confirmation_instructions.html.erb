@@ -1,5 +1,12 @@
 <p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Thank you for signing up for Daily Dharma emails. For us to make sure we are getting
+   the email to you correctly, you will need to confirm your email address. Until you send us
+   your confirmation, we cannot send Daily Dharma emails to you.</p>
+
+<p>Please confirm your account email with the link below:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>If you are not able to confirm your email within three days of receiving this message, please visit the 
+   <%= link_to "Resend Confirmation", new_user_confirmation_url %> page and ask for a new link.</p>
