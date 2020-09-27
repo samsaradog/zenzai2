@@ -18,3 +18,10 @@ no_daily_dharma:
   is_admin: false
   gets_daily_dharma: false
   confirmed_at: <%= Time.now %>
+
+not_confirmed:
+  email: no_confirmation@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
+  gets_daily_dharma: true
+  confirmed_at: <%= nil %>

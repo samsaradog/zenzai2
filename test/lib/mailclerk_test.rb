@@ -4,7 +4,7 @@ require './lib/mailclerk'
 class MailClerkTest < ActionMailer::TestCase
   setup do
     @clerk = ::Zenzai::MailClerk.new
-    @recipients = User.where(gets_daily_dharma: true)
+    @recipients = User.where(gets_daily_dharma: true).where.not(confirmed_at: nil)
   end
 
   test 'gets jewel for today' do
@@ -17,6 +17,17 @@ class MailClerkTest < ActionMailer::TestCase
 
   test 'sends out the mail' do
     @clerk.send_daily_dharma
-    assert_same_elements @recipients.map(&:email), ActionMailer::Base.deliveries.last.bcc
+    addresses = ActionMailer::Base.deliveries.map(&:to).flatten
+
+    assert_same_elements @recipients.map(&:email), addresses
+  end
+
+  test 'sends notifications to unconfirmed users' do
+    unconfirmed = User.where(confirmed_at: nil)
+
+    @clerk.notify_unconfirmed
+    addresses = ActionMailer::Base.deliveries.map(&:to).flatten
+
+    assert_same_elements unconfirmed.map(&:email), addresses
   end
 end

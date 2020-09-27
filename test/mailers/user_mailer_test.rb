@@ -6,7 +6,9 @@ class UserMailerTest < ActionMailer::TestCase
     jewel = jewels(:valid)
     presenter = ::Zenzai::JewelPresenter.new(jewel)
 
-    email = UserMailer.daily_dharma(users, presenter)
+    user = users(:valid)
+
+    email = UserMailer.daily_dharma(user, presenter)
 
     assert_emails 1 do
       email.deliver_now
@@ -15,9 +17,9 @@ class UserMailerTest < ActionMailer::TestCase
     address = UserMailer::FROM.match(/<(.*)>/)[1]
 
     assert_equal [address], email.from
-    assert_equal [address], email.to
+    assert_equal [user.email], email.to
     assert_equal UserMailer::SUBJECT, email.subject
-    assert_same_elements users.map(&:email), email.bcc
+    assert_nil email.bcc
     assert_match jewel.citation, email.text_part.body.to_s
     assert_match jewel.citation, email.html_part.body.to_s
   end
