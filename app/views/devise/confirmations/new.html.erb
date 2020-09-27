@@ -2,12 +2,11 @@
   <%= render :partial => "devise/shared/header", :locals => {:message => "Resend confirmation instructions"} %>
 
   <div class="jumbotron">
-    <p>
-       If you missed getting an email with confirmation instructions, please provide your email address here and we will send
-       it to you again. Please check your spam folder to make sure your mailer has not put the confirmation there. 
+    <p>If you missed getting an email with confirmation instructions, please provide your email address here and we will send
+    it to you again.</p>
 
-       We have had cases where at least Google belives emails from admin@zenzaizenzai.com are spam.
-    </p>
+    <p>Please check your spam folder to make sure your mailer has not put the confirmation email there. We have had cases where at least 
+    Google believed emails from admin@zenzaizenzai.com were spam.</p>
   </div>
 
   <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
