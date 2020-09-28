@@ -1,3 +1,5 @@
+require './lib/user_validator'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,4 +15,7 @@ class User < ApplicationRecord
 
   validates :is_admin, :inclusion => [true, false]
   validates :gets_daily_dharma, :inclusion => [true, false]
+
+  validates_with UserValidator
+
 end

@@ -36,6 +36,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(user.errors[:email].size, 1)
   end
 
+  test 'does not allow new plus email address if one already exists' do
+    user = User.new(email: 'with+anotherplus@123.com')
+    assert_not(user.valid?)
+    assert_equal(user.errors[:email].size, 1)
+  end
+
   test 'returning false when not an admin' do
     assert_not(@valid.is_admin?)
   end

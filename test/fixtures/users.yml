@@ -25,3 +25,17 @@ not_confirmed:
   is_admin: false
   gets_daily_dharma: true
   confirmed_at: <%= nil %>
+
+bounced:
+  email: bounced@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
+  gets_daily_dharma: false
+  confirmed_at: <%= nil %>
+
+with_plus:
+  email: with+plus@123.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
+  gets_daily_dharma: false
+  confirmed_at: <%= nil %>
