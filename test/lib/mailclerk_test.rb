@@ -23,7 +23,7 @@ class MailClerkTest < ActionMailer::TestCase
   end
 
   test 'sends notifications to unconfirmed users' do
-    unconfirmed = User.where(confirmed_at: nil, gets_daily_dharma: false)
+    unconfirmed = User.where(confirmed_at: nil, gets_daily_dharma: true)
 
     @clerk.notify_unconfirmed
     addresses = ActionMailer::Base.deliveries.map(&:to).flatten

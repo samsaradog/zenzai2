@@ -21,7 +21,7 @@ module Zenzai
     end
 
     def notify_unconfirmed
-      User.where(confirmed_at: nil, gets_daily_dharma: false).find_each do |recipient|
+      User.where(confirmed_at: nil, gets_daily_dharma: true).find_each do |recipient|
         recipient.send_confirmation_instructions
         sleep AWS_SENDING_LIMIT
       end
