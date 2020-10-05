@@ -7,7 +7,7 @@ class UserValidator < ActiveModel::Validator
     matched = User.where("email ~* ?", before_plus)
 
     match_found = matched.any? do |user| 
-      get_before_plus(user.email) == before_plus
+      (get_before_plus(user.email) == before_plus) && (user != record)
     end
 
     record.errors[:email] << "is taken. Sorry, we only allow one subdomain email address" if match_found

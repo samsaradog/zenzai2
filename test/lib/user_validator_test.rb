@@ -8,6 +8,11 @@ class UserValidatorTest < ActionMailer::TestCase
     assert(user.valid?)
   end
 
+  test 'existing user is valid' do
+    user = users(:valid)
+    assert(user.valid?)
+  end
+
   test 'fails if a plus address already exists' do
     user = User.new(email: 'with@123.com', password: 'abc123456')
 
