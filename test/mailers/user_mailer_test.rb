@@ -23,4 +23,21 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match jewel.citation, email.text_part.body.to_s
     assert_match jewel.citation, email.html_part.body.to_s
   end
+
+  test 'sending site bug' do
+    user = users(:valid)
+
+    email = UserMailer.site_bug(user)
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    address = UserMailer::FROM.match(/<(.*)>/)[1]
+
+    assert_equal [address], email.from
+    assert_equal [user.email], email.to
+    assert_match user.email, email.html_part.body.to_s
+    assert_match user.email, email.text_part.body.to_s
+  end
 end

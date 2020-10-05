@@ -7,4 +7,9 @@ class UserMailer < ActionMailer::Base
     @jewel_presenter = jewel_presenter
     mail to: user.email, subject: SUBJECT
   end
+
+  def site_bug(user)
+    @user = user
+    mail to: user.email, subject: "Daily Dharma Request"
+  end
 end
