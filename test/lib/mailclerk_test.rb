@@ -30,4 +30,13 @@ class MailClerkTest < ActionMailer::TestCase
 
     assert_same_elements unconfirmed.map(&:email), addresses
   end
+
+  test 'sends site bug notice' do
+    unconfirmed = User.where(confirmed_at: nil, gets_daily_dharma: true)
+
+    @clerk.notify_site_bug
+    addresses = ActionMailer::Base.deliveries.map(&:to).flatten
+
+    assert_same_elements unconfirmed.map(&:email), addresses
+  end
 end

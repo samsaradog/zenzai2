@@ -27,6 +27,13 @@ module Zenzai
       end
     end
 
+    def notify_site_bug
+      User.where(confirmed_at: nil, gets_daily_dharma: true).find_each do |recipient|
+        UserMailer.site_bug(recipient).deliver_now
+        sleep AWS_SENDING_LIMIT
+      end
+    end
+
     private
 
     def current_delivery
