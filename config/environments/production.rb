@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "zenzai2_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'zenzaizenzai.com' }
+  config.action_mailer.default_url_options = { host: 'zenzaizenzai.com', protocol: 'https' }
 
   # Configure to use Amazon SES
   config.action_mailer.delivery_method = :smtp
