@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+
+  recaptcha_error: "There was an error with the reCAPTCHA verification. Please try again."

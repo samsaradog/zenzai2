@@ -6,6 +6,8 @@
 
     <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
 
+    <%= recaptcha_tags %>
+
     <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Send me reset password instructions"} %>
   <% end %>
 

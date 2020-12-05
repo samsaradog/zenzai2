@@ -5,6 +5,9 @@
     <%= devise_error_messages! %>
 
     <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
+
+    <%= recaptcha_tags %>
+
     <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Resend unlock instructions"} %>
 
   <% end %>

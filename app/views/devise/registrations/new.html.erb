@@ -18,6 +18,8 @@
     <%= render :partial => "devise/shared/email_password", :locals => {:f => f} %>
     <%= render :partial => "devise/shared/password_confirmation", :locals => {:f => f} %>
 
+    <%= recaptcha_tags %>
+
     <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Sign up"} %>
   <% end %>
 
