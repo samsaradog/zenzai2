@@ -1,19 +1,42 @@
 class UserValidator < ActiveModel::Validator
+
+  GMAIL_DOMAIN = 'gmail.com'
+
   def validate(record)
-    return unless record.email.present?
-    return if record.errors[:email].any?
+    return unless record.email.present? && record.errors[:email].empty?
 
+    record.errors[:email] << "is taken. We only allow one subdomain email address" if subdomain_duplicate(record)
+
+    record.errors[:email] << "is taken. We only allow one gmail dot address" if gmail_duplicate(record.email)
+  end
+
+  def subdomain_duplicate(record)
     before_plus = get_before_plus(record.email)
-    matched = User.where("email ~* ?", before_plus)
+    domain = get_domain(record.email)
 
-    match_found = matched.any? do |user| 
+    matched = User.where("email ~* ?", before_plus).where("email ~* ?", domain)
+
+    matched.any? do |user| 
       (get_before_plus(user.email) == before_plus) && (user != record)
     end
-
-    record.errors[:email] << "is taken. Sorry, we only allow one subdomain email address" if match_found
   end
 
   def get_before_plus(string)
-      string.split('@').first.split('+').first.downcase
+    string.split('@').first.split('+').first.downcase
+  end
+
+  def get_domain(email_address)
+    email_address.split('@').last
+  end
+
+  def gmail_duplicate(email_address)
+    username, domain = email_address.split('@')
+
+    return false unless domain == GMAIL_DOMAIN
+
+    gmail_users = User.where('email ~* ?', GMAIL_DOMAIN)
+    gmail_usernames = gmail_users.pluck(:email).map {|e| e.split('@').first }.map {|r| r.gsub('.','') }.uniq
+
+    gmail_usernames.include?(username.gsub('.',''))
   end
 end

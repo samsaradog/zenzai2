@@ -39,3 +39,10 @@ with_plus:
   is_admin: false
   gets_daily_dharma: false
   confirmed_at: <%= nil %>
+
+gmail:
+  email: blah@gmail.com
+  encrypted_password: <%= encrypted_password %>
+  is_admin: false
+  gets_daily_dharma: false
+  confirmed_at: <%= nil %>
