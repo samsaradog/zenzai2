@@ -14,7 +14,7 @@
 
     <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
 
-    <%= recaptcha_tags %>
+    <%= recaptcha_v3(action: 'confirmation', site_key: ENV['RECAPTCHA_V3_SITE_KEY']) %>
 
     <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Resend confirmation instructions"} %>
 

@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     flash.delete :recaptcha_error
 
-    if verify_recaptcha
+    if verify_recaptcha(action: 'register', minimum_score: ENV['RECAPTCHA_THRESHOLD'].to_f, secret_key: ENV['RECAPTCHA_V3_SECRET_KEY'])
       super
     else
       build_resource(sign_up_params)

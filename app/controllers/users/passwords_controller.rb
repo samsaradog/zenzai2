@@ -2,7 +2,7 @@
 
 class Users::PasswordsController < Devise::PasswordsController
    def create
-     if verify_recaptcha
+     if verify_recaptcha(action: 'password_reset', minimum_score: ENV['RECAPTCHA_THRESHOLD'].to_f, secret_key: ENV['RECAPTCHA_V3_SECRET_KEY'])
        super
      else
        self.resource = resource_class.new
