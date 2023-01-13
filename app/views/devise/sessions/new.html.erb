@@ -14,7 +14,7 @@
       </div>
     <% end -%>
 
-    <%= recaptcha_tags %>
+    <%= recaptcha_v3(action: 'sign_in', site_key: ENV['RECAPTCHA_V3_SITE_KEY']) %>
 
     <%= render :partial => "devise/shared/submit", :locals => {:f => f, :message => "Sign in"} %>
   <% end %>
