@@ -5,9 +5,9 @@ class UserValidator < ActiveModel::Validator
   def validate(record)
     return unless record.email.present? && record.errors[:email].empty?
 
-    record.errors[:email] << "is taken. We only allow one subdomain email address" if subdomain_duplicate(record)
+    record.errors.add(:email, "is taken. We only allow one subdomain email address") if subdomain_duplicate(record)
 
-    record.errors[:email] << "is taken. We only allow one gmail dot address" if gmail_duplicate(record.email)
+    record.errors.add(:email, "is taken. We only allow one gmail dot address") if gmail_duplicate(record.email)
   end
 
   def subdomain_duplicate(record)

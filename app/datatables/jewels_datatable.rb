@@ -15,7 +15,7 @@ class JewelsDatatable < BaseDatatable
       citation: { source: "Jewel.citation" },
       quote:    { source: "Jewel.quote" },
       comment:  { source: "Jewel.comment" },
-      actions:  { source: "action" },
+      action:   { source: "action" },
     }
   end
 

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <%= render :partial => "devise/shared/header", :locals => {:message => "Edit User Profile"} %>
 
-    <%= devise_error_messages! %>
+    <%= render "devise/shared/error_messages", resource: resource %>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 
       <%= render :partial => "devise/shared/email", :locals => {:f => f} %>
