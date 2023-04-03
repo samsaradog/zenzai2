@@ -7,7 +7,7 @@ class UserValidator < ActiveModel::Validator
 
     record.errors.add(:email, "is taken. We only allow one subdomain email address") if subdomain_duplicate(record)
 
-    record.errors.add(:email, "is taken. We only allow one gmail dot address") if gmail_duplicate(record)
+    record.errors.add(:email, "is taken. We only allow one gmail dot address") if gmail_duplicate(record.email)
   end
 
   def subdomain_duplicate(record)
@@ -29,13 +29,12 @@ class UserValidator < ActiveModel::Validator
     email_address.split('@').last
   end
 
-  def gmail_duplicate(record)
-    email_address = record.email
+  def gmail_duplicate(email_address)
     username, domain = email_address.split('@')
 
-    return false unless (domain == GMAIL_DOMAIN && record.new_record?)
+    return false unless domain == GMAIL_DOMAIN
 
-    gmail_users = User.where('email ~* ?', GMAIL_DOMAIN)
+    gmail_users = User.where('email ~* ?', GMAIL_DOMAIN).where.not(email: email_address)
     gmail_usernames = gmail_users.pluck(:email).map {|e| e.split('@').first }.map {|r| r.gsub('.','') }.uniq
 
     gmail_usernames.include?(username.gsub('.',''))
