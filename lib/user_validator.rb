@@ -34,7 +34,7 @@ class UserValidator < ActiveModel::Validator
 
     return false unless domain == GMAIL_DOMAIN
 
-    gmail_users = User.where('email ~* ?', GMAIL_DOMAIN)
+    gmail_users = User.where('email ~* ?', GMAIL_DOMAIN).where.not(email: email_address)
     gmail_usernames = gmail_users.pluck(:email).map {|e| e.split('@').first }.map {|r| r.gsub('.','') }.uniq
 
     gmail_usernames.include?(username.gsub('.',''))

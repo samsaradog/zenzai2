@@ -40,6 +40,13 @@ class UserValidatorTest < ActionMailer::TestCase
     assert(user.valid?)
   end
 
+  test 'lets us make changes to users with gmail addresses' do
+    user = users(:gmail)
+    user.gets_daily_dharma = false
+
+    assert(user.save)
+  end
+
   test 'fails if email address not present' do
     user = User.new
 
